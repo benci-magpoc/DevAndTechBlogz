@@ -21,6 +21,6 @@ namespace DevAndTechBlogz.Models
         public DateTime? Updated { get; set; } = DateTime.UtcNow;
 
         //Nav props
-        public virtual ICollection<BlogComment> BlogComments { get; set; } = new HashSet<BlogComment>();
+        public virtual ICollection<BlogPostComment> BlogPostComments { get; set; } = new HashSet<BlogPostComment>();
     }
 }

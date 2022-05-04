@@ -10,7 +10,7 @@ namespace DevAndTechBlogz.Data
             : base(options)
         {
         }
-
         public DbSet<BlogPost> BlogPosts { get; set; } = default!;
+        public DbSet<BlogPostComment> BlogPostComments { get; set; } = default!;
     }
 }
