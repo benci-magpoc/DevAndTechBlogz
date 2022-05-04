@@ -11,6 +11,6 @@ namespace DevAndTechBlogz.Data
         {
         }
         public DbSet<BlogPost> BlogPosts { get; set; } = default!;
-        public DbSet<BlogPostComment> BlogPostComments { get; set; } = default!;
+        //public DbSet<BlogPostComment> BlogPostComments { get; set; } = default!;
     }
 }
