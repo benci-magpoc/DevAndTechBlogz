@@ -55,11 +55,13 @@ namespace DevAndTechBlogz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Abstract,Content,Created,Updated")] BlogPost blogPost)
+        public async Task<IActionResult> Create([Bind("Title,Abstract,Content")] BlogPost blogPost)
         {
             if (ModelState.IsValid)
             {
-                blogPost.Created = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
+                blogPost.Created = DateTime.UtcNow;
+                //blogPost.Created = DateTime.SpecifyKind(blogPost.Created, DateTimeKind.Utc);
+                //blogPost.Updated = DateTime.UtcNow;
                 _context.Add(blogPost);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -88,7 +90,7 @@ namespace DevAndTechBlogz.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Abstract,Content,Created,Updated")] BlogPost blogPost)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Abstract,Content,Created")] BlogPost blogPost)
         {
             if (id != blogPost.Id)
             {
@@ -99,6 +101,8 @@ namespace DevAndTechBlogz.Controllers
             {
                 try
                 {
+                    blogPost.Created = DateTime.SpecifyKind(blogPost.Created, DateTimeKind.Utc);
+                    blogPost.Updated = DateTime.UtcNow;
                     _context.Update(blogPost);
                     await _context.SaveChangesAsync();
                 }

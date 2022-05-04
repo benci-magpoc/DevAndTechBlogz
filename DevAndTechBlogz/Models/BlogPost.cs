@@ -18,8 +18,9 @@ namespace DevAndTechBlogz.Models
 
         [DataType(DataType.Date)]
         public DateTime Created { get; set; } = DateTime.UtcNow;
+        public DateTime? Updated { get; set; } = DateTime.UtcNow;
 
-        public DateTime? Updated { get; set; }
-
+        //Nav props
+        public virtual ICollection<BlogComment> BlogComments { get; set; } = new HashSet<BlogComment>();
     }
 }
